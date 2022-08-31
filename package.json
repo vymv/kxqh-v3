@@ -1,0 +1,56 @@
+{
+  "main": "electron/main.js",
+  "name": "kexueqianghun",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "electron": "wait-on tcp:2021 && electron . --mode=development ",
+    "electron:serve": "concurrently -k \"npm run dev\" \"npm run electron\"",
+    "electron:build": "npm run build && electron-builder"
+  },
+  "build": {
+    "appId": "8a06282fb08c48eeacb15bfbe4d3a35b",
+    "productName": "kexueqianghunApp",
+    "copyright": "Copyright © 2022 <科学强魂>",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "dist_electron"
+    }
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.0.9",
+    "axios": "^0.21.4",
+    "cartesian-product-generator": "^1.1.1",
+    "dayjs": "^1.11.5",
+    "echarts": "^5.3.3",
+    "element-plus": "^1.0.2-beta.45",
+    "lodash": "^4.17.21",
+    "path-browserify": "^1.0.1",
+    "pinia": "^2.0.21",
+    "vue": "^3.2.37",
+    "vue-router": "^4.0.8"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.2.3",
+    "@vue/compiler-sfc": "^3.0.5",
+    "concurrently": "^7.3.0",
+    "electron": "^20.1.0",
+    "electron-builder": "^23.3.3",
+    "sass": "^1.34.0",
+    "vite": "^2.3.5",
+    "wait-on": "^6.0.1"
+  }
+}
