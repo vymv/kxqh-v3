@@ -1,8 +1,8 @@
-import { flatten } from 'lodash';
+import { flatten } from "lodash";
 
 // 解析御魂json
-import { yuhunInfo, attrDict, singleAttrMap } from '@/data/yuhuninfo.js';
-import { calcYuhunScore } from '@/utils/analysis.js';
+import { yuhunInfo, attrDict, singleAttrMap } from "@/data/yuhuninfo.js";
+import { calcYuhunScore } from "@/utils/analysis.js";
 
 const parseYhJson = (json) => {
   const eqData = json.data.hero_equips;
@@ -21,37 +21,37 @@ const parseYhJson = (json) => {
     // }
   });
   const res = { ...json.data, eqData };
-  Reflect.deleteProperty(res, 'realm_cards');
-  Reflect.deleteProperty(res, 'heroes');
-  Reflect.deleteProperty(res, 'realm_cards');
-  Reflect.deleteProperty(res, 'hero_book_shards');
-  Reflect.deleteProperty(res, 'hero_equip_presets');
-  Reflect.deleteProperty(res, 'story_tasks');
-  Reflect.deleteProperty(res, 'hero_equips');
+  Reflect.deleteProperty(res, "realm_cards");
+  Reflect.deleteProperty(res, "heroes");
+  Reflect.deleteProperty(res, "realm_cards");
+  Reflect.deleteProperty(res, "hero_book_shards");
+  Reflect.deleteProperty(res, "hero_equip_presets");
+  Reflect.deleteProperty(res, "story_tasks");
+  Reflect.deleteProperty(res, "hero_equips");
   eqData.forEach((item) => {
     item.score = calcYuhunScore(item);
-    Reflect.deleteProperty(item, 'suit_id');
+    Reflect.deleteProperty(item, "suit_id");
   });
-  console.log(res);
+  //console.log(res);
   return res;
 };
 
 // A输出项 、F奶盾项、M命中、D抵抗、B双堆、S纯速度项
 const attrsDict = {
-  A: ['CritPower', 'CritRate', 'AttackRate'],
-  F: ['CritPower', 'CritRate', 'HpRate'],
-  M: ['EffectHitRate'],
-  D: ['EffectResistRate'],
-  B: ['EffectResistRate', 'EffectHitRate'],
-  S: ['Speed'],
+  A: ["CritPower", "CritRate", "AttackRate"],
+  F: ["CritPower", "CritRate", "HpRate"],
+  M: ["EffectHitRate"],
+  D: ["EffectResistRate"],
+  B: ["EffectResistRate", "EffectHitRate"],
+  S: ["Speed"],
 };
 
 const calcAttr = (attrName, attrVal) => {
-  if (attrName !== 'Speed') {
+  if (attrName !== "Speed") {
     attrVal *= 100;
   }
   // 速度 暴击 生命 攻击
-  if (['Speed', 'CritRate', 'HpRate', 'AttackRate'].includes(attrName)) {
+  if (["Speed", "CritRate", "HpRate", "AttackRate"].includes(attrName)) {
     return Math.ceil(attrVal / 3);
   }
   // 命中、抵抗、爆伤
@@ -59,11 +59,12 @@ const calcAttr = (attrName, attrVal) => {
 };
 
 // 收益次数计算
-const calcPoint = (eqData, type = ['A', 'S'], onlySpeed = false) => {
+const calcPoint = (eqData, type = ["A", "S"], onlySpeed = false) => {
   let point = 0;
 
   // 如果只考虑速度做为评分标准 则二号位主属性非速度的都视为0分（如防御17速）
-  if (onlySpeed && eqData.pos === 2 && eqData.base_attr !== 'Speed') {
+  if (onlySpeed && eqData.pos == 1 && eqData.base_attr.type != "Speed") {
+    console.log(eqData);
     return 0;
   }
 

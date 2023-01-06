@@ -3,12 +3,12 @@
 </template>
 
 <script setup>
-import { sum } from 'lodash';
+import { sum } from "lodash";
 
-import BaseChart from '@/components/echarts/BaseChart.vue';
-import { computed, defineProps } from 'vue';
-import { yuhunInfo } from '@/data/yuhuninfo.js';
-import { getSuitPosCountByScore } from '@/utils/analysis.js';
+import BaseChart from "@/components/echarts/BaseChart.vue";
+import { computed, defineProps } from "vue";
+import { yuhunInfo } from "@/data/yuhuninfo.js";
+import { getSuitPosCountByScore } from "@/utils/analysis.js";
 
 // const props = defineProps({
 //   data: Array,
@@ -23,82 +23,82 @@ import { getSuitPosCountByScore } from '@/utils/analysis.js';
 let xAxisData = [];
 let series = [
   {
-    name: '总数',
-    type: 'bar',
+    name: "总数",
+    type: "bar",
     data: [],
     emphasis: {
-      focus: 'series',
+      focus: "series",
     },
   },
   {
-    name: '1号位',
-    type: 'bar',
-    stack: 'total',
+    name: "1号位",
+    type: "bar",
+    stack: "total",
     label: {
       show: false,
     },
     emphasis: {
-      focus: 'series',
+      focus: "series",
     },
     data: [],
   },
   {
-    name: '2号位',
-    type: 'bar',
-    stack: 'total',
+    name: "2号位",
+    type: "bar",
+    stack: "total",
     label: {
       show: false,
     },
     emphasis: {
-      focus: 'series',
+      focus: "series",
     },
     data: [],
   },
   {
-    name: '3号位',
-    type: 'bar',
-    stack: 'total',
+    name: "3号位",
+    type: "bar",
+    stack: "total",
     label: {
       show: false,
     },
     emphasis: {
-      focus: 'series',
+      focus: "series",
     },
     data: [],
   },
   {
-    name: '4号位',
-    type: 'bar',
-    stack: 'total',
+    name: "4号位",
+    type: "bar",
+    stack: "total",
     label: {
       show: false,
     },
     emphasis: {
-      focus: 'series',
+      focus: "series",
     },
     data: [],
   },
   {
-    name: '5号位',
-    type: 'bar',
-    stack: 'total',
+    name: "5号位",
+    type: "bar",
+    stack: "total",
     label: {
       show: false,
     },
     emphasis: {
-      focus: 'series',
+      focus: "series",
     },
     data: [],
   },
   {
-    name: '6号位',
-    type: 'bar',
-    stack: 'total',
+    name: "6号位",
+    type: "bar",
+    stack: "total",
     label: {
       show: false,
     },
     emphasis: {
-      focus: 'series',
+      focus: "series",
     },
     data: [],
   },
@@ -106,7 +106,8 @@ let series = [
 
 yuhunInfo.forEach((yuhun) => {
   xAxisData.push(yuhun.name);
-  const score = getSuitPosCountByScore(yuhun.name, ['S'], 6);
+  const score = getSuitPosCountByScore(yuhun.name, ["S"], 6);
+  //console.log(score);
   score.forEach((s, index) => {
     series[index + 1].data.push(s);
   });
@@ -115,25 +116,25 @@ yuhunInfo.forEach((yuhun) => {
 
 const option = computed(() => ({
   tooltip: {
-    trigger: 'axis',
+    trigger: "axis",
     axisPointer: {
       // Use axis to trigger tooltip
-      type: 'shadow', // 'shadow' as default; can also be 'line' or 'shadow'
+      type: "shadow", // 'shadow' as default; can also be 'line' or 'shadow'
     },
   },
   legend: {
     data: series.map((item) => item.name),
   },
   yAxis: {
-    type: 'value',
+    type: "value",
   },
   xAxis: {
-    type: 'category',
+    type: "category",
     data: xAxisData,
     axisLabel: {
       interval: 0,
       formatter(text) {
-        return text.split('').join('\n');
+        return text.split("").join("\n");
       },
     },
   },

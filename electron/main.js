@@ -12,10 +12,10 @@ Menu.setApplicationMenu(null);
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1920,
-    height: 720,
-    minHeight: 1920,
-    minWidth: 720,
+    width: 1080,
+    height: 600,
+    minWidth: 1080,
+    minHeight: 600,
     frame: true /*是否展示顶部导航  去掉关闭按钮  最大化最小化按钮*/,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -25,6 +25,7 @@ function createWindow() {
   // and load the index.html of the app.
   //mainWindow.loadFile("index.html");
   mainWindow.loadURL(mode === "development" ? "http://localhost:2021" : `file://${path.join(__dirname, "../dist/index.html")}`);
+  mainWindow.maximize();
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 }

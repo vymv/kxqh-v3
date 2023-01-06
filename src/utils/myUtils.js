@@ -92,12 +92,12 @@ export function dotchartData(suitName) {
 
     let mappeddata = selecteddata.map((item) => {
       let val = item.random_attrs.filter((attr) => attr.type === propertyType[i])[0].value;
-      // if (val < 1) val *= 100;
+      if (val < 1) val *= 100;
       return [item.pos + 1, val];
     });
     data.push({ name: propertyName[i], data: mappeddata });
   }
-  console.log(data);
+  //console.log(data);
   return data;
   // [
   //   {

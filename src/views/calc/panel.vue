@@ -13,67 +13,25 @@
           <div class="item">
             <div class="label">效果指标</div>
             <el-select class="selector" v-model="calcStore.target" placeholder="请选择">
-              <el-option
-                v-for="item in targetOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+              <el-option v-for="item in targetOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
             </el-select>
           </div>
           <div class="item">
             <div class="label">2号位主属性</div>
-            <el-select
-              class="selector"
-              v-model="calcStore.mainAttrs.pos2"
-              multiple
-              collapse-tags
-              placeholder="请选择"
-            >
-              <el-option
-                v-for="item in pos2AttrOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+            <el-select class="selector" v-model="calcStore.mainAttrs.pos2" multiple collapse-tags placeholder="请选择">
+              <el-option v-for="item in pos2AttrOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
             </el-select>
           </div>
           <div class="item">
             <div class="label">4号位主属性</div>
-            <el-select
-              class="selector"
-              v-model="calcStore.mainAttrs.pos4"
-              multiple
-              collapse-tags
-              placeholder="请选择"
-            >
-              <el-option
-                v-for="item in pos4AttrOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+            <el-select class="selector" v-model="calcStore.mainAttrs.pos4" multiple collapse-tags placeholder="请选择">
+              <el-option v-for="item in pos4AttrOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
             </el-select>
           </div>
           <div class="item">
             <div class="label">6号位主属性</div>
-            <el-select
-              class="selector"
-              v-model="calcStore.mainAttrs.pos6"
-              multiple
-              collapse-tags
-              placeholder="请选择"
-            >
-              <el-option
-                v-for="item in pos6AttrOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+            <el-select class="selector" v-model="calcStore.mainAttrs.pos6" multiple collapse-tags placeholder="请选择">
+              <el-option v-for="item in pos6AttrOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
             </el-select>
           </div>
         </div>
@@ -114,20 +72,20 @@
 </template>
 
 <script setup>
-import PickHero from './component/PickHero.vue';
-import ChoiceYuhun from './component/ChoiceYuhun.vue';
-import LimitAttr from './component/LimitAttr.vue';
-import { targetOptions, pos2AttrOptions, pos4AttrOptions, pos6AttrOptions } from '@/data/calc.js';
-import useCalcStore from '@/store/calc.js';
-import { pruneYuhunList, makeCombination } from '@/lib/calc.js';
+import PickHero from "./component/PickHero.vue";
+import ChoiceYuhun from "./component/ChoiceYuhun.vue";
+import LimitAttr from "./component/LimitAttr.vue";
+import { targetOptions, pos2AttrOptions, pos4AttrOptions, pos6AttrOptions } from "@/data/calc.js";
+import useCalcStore from "@/store/calc.js";
+import { pruneYuhunList, makeCombination } from "@/lib/calc.js";
 
 const calcStore = useCalcStore();
 
 const start = () => {
   const yuhunList = pruneYuhunList();
-  console.log(yuhunList);
+  //console.log(yuhunList);
   const comboList = makeCombination();
-  console.log(comboList);
+  //console.log(comboList);
 };
 </script>
 
@@ -149,11 +107,11 @@ const start = () => {
     padding-left: 8px;
     font-size: 20px;
     font-weight: 900;
-    font-family: 'STCaiyun';
+    font-family: "STCaiyun";
     color: #826b5a;
     display: list-item;
     &::marker {
-      content: '🌙';
+      content: "🌙";
     }
   }
   .panel {

@@ -58,6 +58,7 @@ const option = computed(() => ({
       label: {
         show: true,
         formatter: function (params) {
+          if (params.value == null) return 0;
           if (params.value < 1.0) return (params.value * 100).toFixed(2);
           return params.value.toFixed(2);
         },
